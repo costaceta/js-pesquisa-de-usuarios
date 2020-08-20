@@ -1,0 +1,14 @@
+.users-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.users__box {
+    width: 48%;
+    text-align: center;
+}
+
+.users--border {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
