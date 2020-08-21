@@ -26,10 +26,35 @@ async function fetchUsers () {
             }
         })
 
-        console.log(allUsers)
+        handleTiping(allUsers)
 
     } catch(error) {
         console.log(error)
     }
 
+}
+
+
+function handleTiping(users) {
+    const $form = document.querySelector('#form-users')
+
+    $form.addEventListener('submit', (event) => {
+       event.preventDefault();
+    })
+
+    const inputSearch = document.querySelector('[name="search"]')
+
+    inputSearch.addEventListener('keyup', (event) => {
+
+        const text = event.target.value;
+
+        users.map( user => {
+            user.name.indexOf()
+        })
+
+        const filteredUsers = users.filter( user => user.name )
+
+        console.log(filteredUsers)
+
+    })
 }
