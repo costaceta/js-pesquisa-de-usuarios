@@ -1,8 +1,23 @@
-let allUsers = [];
+let inputSearch = null,
+    buttonSearch = null,
+    panelUsers = null,
+    panelStatistics = null
 
-window.addEventListener('load', () => {
-    fetchUsers();
+let  users = [];
+
+window.addEventListener('load', async () => {
+    mapElements();
+    await fetchUsers();
+
+    console.log(users)
 })
+
+function mapElements() {
+    inputSearch = document.querySelector('#inputSearch');
+    buttonSearch = document.querySelector('#buttonSearch');
+    panelUsers = document.querySelector('#panelUsers');
+    panelStatistics = document.querySelector('#panelStatistics');
+}
 
 async function fetchUsers () {
 
@@ -12,7 +27,7 @@ async function fetchUsers () {
 
         const { results } = json;
 
-        allUsers = results.map( user => {
+        users = results.map( user => {
             const {
                 name: { first, last },
                 dob: { age },
@@ -32,29 +47,4 @@ async function fetchUsers () {
         console.log(error)
     }
 
-}
-
-
-function handleTiping(users) {
-    const $form = document.querySelector('#form-users')
-
-    $form.addEventListener('submit', (event) => {
-       event.preventDefault();
-    })
-
-    const inputSearch = document.querySelector('[name="search"]')
-
-    inputSearch.addEventListener('keyup', (event) => {
-
-        const text = event.target.value;
-
-        users.map( user => {
-            user.name.indexOf()
-        })
-
-        const filteredUsers = users.filter( user => user.name )
-
-        console.log(filteredUsers)
-
-    })
 }
