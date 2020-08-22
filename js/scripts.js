@@ -2,14 +2,13 @@ let inputSearch = null,
     buttonSearch = null,
     panelUsers = null,
     panelStatistics = null
-
-let  users = [];
+    users = [];
 
 window.addEventListener('load', async () => {
     mapElements();
     await fetchUsers();
-
-    console.log(users)
+    addEvents();
+    render()
 })
 
 function mapElements() {
@@ -18,23 +17,6 @@ function mapElements() {
     panelUsers = document.querySelector('#panelUsers');
     panelStatistics = document.querySelector('#panelStatistics');
 }
-
-inputSearch = document.querySelector('#inputSearch');
-
-inputSearch.addEventListener('keyup', event=>{
-
-    console.log('digitei', inputSearch.value)
-    
-    for(i=0; i<=users.length-1; i++){
-        //console.log(users[i].name)
-        if(users[i].name.indexOf(inputSearch.value)>-1){
-            //console.log("verdadeiro")
-            console.log('Results:',users[i].name, users[i].age, users[i].thumbnail,)
-        } 
-    }
-    
-});
-    
 
 async function fetchUsers () {
 
@@ -58,10 +40,26 @@ async function fetchUsers () {
             }
         })
 
-        handleTiping(allUsers)
-
     } catch(error) {
         console.log(error)
     }
 
+}
+
+function addEvents() {
+    inputSearch.addEventListener( 'keyup', handleKeyUp );
+}
+
+function handleKeyUp(event) {
+    for( i=0; i<=users.length-1; i++ ) {
+        //console.log(users[i].name)
+        if( users[i].name.indexOf(inputSearch.value) >-1 ) {
+            //console.log("verdadeiro")
+            console.log('Results:',users[i].name, users[i].age, users[i].thumbnail,)
+        }
+    }
+}
+
+function render() {
+    
 }
