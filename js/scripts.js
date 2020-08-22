@@ -7,8 +7,10 @@ let inputSearch = null,
 window.addEventListener('load', async () => {
     mapElements();
     await fetchUsers();
+
     addEvents();
-    render()
+
+    render();
 })
 
 function mapElements() {
@@ -51,15 +53,31 @@ function addEvents() {
 }
 
 function handleKeyUp(event) {
-    for( i=0; i<=users.length-1; i++ ) {
-        //console.log(users[i].name)
-        if( users[i].name.indexOf(inputSearch.value) >-1 ) {
-            //console.log("verdadeiro")
-            console.log('Results:',users[i].name, users[i].age, users[i].thumbnail,)
-        }
-    }
+    const textToSearch = event.target.value;
+    users = users.filter( user => user.name.includes(textToSearch) )
+
+    render()
 }
 
 function render() {
-    
+    renderUsersPanel()
+}
+
+function renderUsersPanel() {
+    let renderHTML = '';
+
+    renderHTML += '<ul>';
+
+    users.forEach( user => {
+        renderHTML += `
+            <li>
+                <img src="${user.thumbnail}"  />
+                ${user.name}
+            </li>
+        `
+    })
+
+    renderHTML += '</ul>';
+
+    panelUsers.innerHTML = renderHTML
 }
