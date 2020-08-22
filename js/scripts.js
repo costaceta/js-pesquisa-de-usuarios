@@ -19,6 +19,23 @@ function mapElements() {
     panelStatistics = document.querySelector('#panelStatistics');
 }
 
+inputSearch = document.querySelector('#inputSearch');
+
+inputSearch.addEventListener('keyup', event=>{
+
+    console.log('digitei', inputSearch.value)
+    
+    for(i=0; i<=users.length-1; i++){
+        //console.log(users[i].name)
+        if(users[i].name.indexOf(inputSearch.value)>-1){
+            //console.log("verdadeiro")
+            console.log('Results:',users[i].name, users[i].age, users[i].thumbnail,)
+        } 
+    }
+    
+});
+    
+
 async function fetchUsers () {
 
     try {
